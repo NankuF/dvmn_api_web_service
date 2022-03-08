@@ -1,19 +1,15 @@
 import requests
 
-london = 'london'
-sheremetievo = 'svo'
-cherepovec = 'Череповец'
 
-
-def get_weather(city: str):
-    url = f'http://wttr.in/{city}'
+def get_weather(place: str):
+    url = f'http://wttr.in/{place}'
     payload = {'nTqu': '', 'lang': 'ru', 'm': '', }
     response = requests.get(url, params=payload)
     response.raise_for_status()
-    print(response.text)
+    return response.text
 
 
 if __name__ == '__main__':
-    get_weather(london)
-    get_weather(sheremetievo)
-    get_weather(cherepovec)
+    places = ['london', 'svo', 'Череповец']
+    for place in places:
+        print(get_weather(place))
